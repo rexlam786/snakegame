@@ -33,3 +33,17 @@ canvas {
 canvas {
   touch-action: none;
 }
+
+#controls {
+  margin-top: 10px;
+}
+
+#controls button {
+  font-size: 24px;
+  padding: 10px 15px;
+  margin: 5px;
+}
+
+button {
+  touch-action: manipulation;
+}

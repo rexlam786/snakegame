@@ -55,4 +55,25 @@ window.addEventListener("touchend", e => {
   }
 });
 
+const controls = document.getElementById("controls");
+
+if (controls) {
+  controls.addEventListener("click", e => {
+    const dir = e.target.dataset.dir;
+    if (!dir) return;
+
+    const { direction } = gameState;
+
+    if (dir === "up" && direction.y === 0)
+      gameState.nextDirection = { x: 0, y: -1 };
+    if (dir === "down" && direction.y === 0)
+      gameState.nextDirection = { x: 0, y: 1 };
+    if (dir === "left" && direction.x === 0)
+      gameState.nextDirection = { x: -1, y: 0 };
+    if (dir === "right" && direction.x === 0)
+      gameState.nextDirection = { x: 1, y: 0 };
+  });
+}
+
+
 }

@@ -1,9 +1,12 @@
 import { gameState } from "../game/gameState.js";
 import { spawnFood } from "../entities/food.js";
+import { saveScore, getLeaderboard } from "../services/storage.js";
 
 const overlay = document.getElementById("overlay");
 const text = document.getElementById("overlayText");
 const button = document.getElementById("startBtn");
+
+
 
 function resetGame() {
   gameState.snake = [{ x: 10, y: 10 }];
@@ -27,9 +30,18 @@ export function startGameUI() {
 export function showGameOver() {
   gameState.isRunning = false;
 
-  text.textContent = "Game Over";
-  button.textContent = "Restart";
+  saveScore(gameState.score);
 
+  const leaderboard = getLeaderboard();
+
+  text.innerHTML = `
+    Game Over<br/>
+    Score: ${gameState.score}<br/><br/>
+    Top Scores:<br/>
+    ${leaderboard.map(s => s).join("<br/>")}
+  `;
+
+  button.textContent = "Restart";
   overlay.classList.remove("hidden");
 }
 
@@ -42,3 +54,4 @@ window.addEventListener("keydown", e => {
     startGameUI();
   }
 });
+
