@@ -13,9 +13,11 @@ export function startGame() {
 
 function getTickRate() {
   const length = gameState.snake.length;
+  console.log(Math.max(30, 150 - length * 4))
+//   // Starts at 150ms, gets faster as snake grows
+//   return 30;
 
-  // Starts at 150ms, gets faster as snake grows
-  return Math.max(60, 150 - length * 2);
+ return Math.max(60, 150 - length * 3);
 }
 
 function loop(time) {
